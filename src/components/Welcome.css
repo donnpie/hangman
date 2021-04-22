@@ -1,0 +1,13 @@
+.welcome-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-container{
+
+}
+
+#logo {
+    height: 300px;
+}

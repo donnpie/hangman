@@ -1,23 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter, Route} from 'react-router-dom';
+import Welcome from './components/Welcome.jsx'
+import HangmanApp from './components/HangmanApp.jsx'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Route exact={true} path="/" component={Welcome} />
+        <Route  path="/game" component={HangmanApp} />
+      
+      
+      
+      
+      
+      
+      
+      
+      </BrowserRouter>
     </div>
   );
 }

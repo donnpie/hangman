@@ -1,0 +1,12 @@
+.KPI-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 20px;
+}
+
+.KPI-container h4 {
+    padding-right: 5px;
+}
+
+
