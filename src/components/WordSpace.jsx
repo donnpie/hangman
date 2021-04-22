@@ -8,7 +8,12 @@ class WordSpace extends React.Component {
             <div>
                 {this.props.letterArray.map((item, idx)=>{
                     return (
-                        <Letter key={idx} letter={item.letter} style={item.style}/>
+                        <Letter    
+                            key={idx} 
+                            letter={item.letter} 
+                            style={item.style}
+                            handleAlphabetClick={this.props.handleAlphabetClick}
+                        />
                     );
                 })}
             </div>

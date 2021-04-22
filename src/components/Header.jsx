@@ -6,10 +6,11 @@ const Header = (props) => {
     return (
         <div className="header-container">
             <Link title="Home" href="/" />
+            <Link title="Help" href="/help" />
             <div className="kpis">
-                <KPI lable="Record:" value="100"/>
-                <KPI lable="Tries left:" value="10" />
-                <KPI lable="Round:" value="5" />
+                <KPI lable="Record:" value={props.record}/>
+                <KPI lable="Tries left:" value={props.triesLeft} />
+                <KPI lable="Round:" value={props.round} />
             </div>
         </div>
 

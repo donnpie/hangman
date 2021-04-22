@@ -7,7 +7,10 @@ const Welcome = () => {
             <div className="image-container">
                 <img src={require('../img/gallows/state11.GIF').default} id="logo" alt="hangman"/>
             </div>
-            <Link title="Play!" href="/game" />
+            <div className="welcome-buttons">
+                <Link title="Play!" href="/game" />
+                <Link title="Help" href="/help" />
+            </div>
         </div>
 
 

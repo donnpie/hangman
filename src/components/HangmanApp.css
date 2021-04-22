@@ -1,0 +1,12 @@
+.hangman-app {
+    max-width: 550px;
+    margin: auto;
+}
+
+.victory{
+    color: green;
+}
+
+.defeat{
+    color: red;
+}

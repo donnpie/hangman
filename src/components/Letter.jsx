@@ -14,8 +14,13 @@ class Letter extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick() {
-        console.log("handleClick");
+    handleClick(e) {
+        //To return custom data elements:
+        //https://www.pluralsight.com/guides/how-to-access-custom-attributes-from-aevent-object-in-react
+        
+        //console.log(e);
+        //console.log(e.target.dataset.letter);
+        this.props.handleAlphabetClick(e.target.dataset.letter, e.target.dataset.style);
     }
 
     getImage(letter, style) {
@@ -43,8 +48,11 @@ class Letter extends React.Component {
         return (
             <img 
                 src={this.getImage(this.props.letter, this.props.style)} 
-                img="letter" className="letter-image"
+                className="letter-image"
                 onClick={this.handleClick}
+                data-letter={this.props.letter}
+                data-style={this.props.style}
+                alt="letter" 
             />
         );
     }

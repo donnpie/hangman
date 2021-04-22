@@ -11,3 +11,7 @@
 #logo {
     height: 300px;
 }
+
+.welcome-buttons {
+    display: flex;
+}
