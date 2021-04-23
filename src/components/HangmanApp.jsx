@@ -240,7 +240,7 @@ class HangmanApp extends React.Component {
     
     render() {
         const winMessage = 'Congratulations, you won!';
-        const loseMessage = 'Awh, you failed. Have another go!';
+        const loseMessage = 'Awh, you failed. The word is '+this.state.targetWord+'. Have another go!';
         const showWinMessage = this.state.gameComplete && this.state.gameWon;
         const showLoseMessage = this.state.gameComplete && !this.state.gameWon;
         const debugMode = false;
