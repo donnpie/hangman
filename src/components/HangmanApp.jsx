@@ -148,44 +148,19 @@ class HangmanApp extends React.Component {
     }
 
     handleLookup() {
-        const http = require("https");
-
-        const app_id = "5a3e8dec"; // insert your APP Id
-        const app_key = "6ff35dc40a6b1987baf7ce0e1f13e83d"; // insert your APP Key
-        const wordId = this.state.targetWord;
-        let result = [];
-
-        const options = {
-            host: 'od-api.oxforddictionaries.com',
-            port: '443',
-            path: '/api/v2/entries/en-gb/' + wordId,
-            method: "GET",
-            headers: {
-                'app_id': app_id,
-                'app_key': app_key
-            }
-        };
-
-        http.get(options, (resp) => {
-            let body = '';
-            resp.on('data', (d) => {
-                body += d;
+        const url = '/exists/' + this.state.targetWord;
+        console.log('url: ', url);
+        fetch(url)
+        .then(res => res.json())
+        .then(json => {
+            //console.log(json)
+            this.setState(()=>{
+                return {
+                    definition: json
+                }
             });
-            resp.on('end', () => {
-                let json = JSON.parse(body);
-                let senses = json.results[0].lexicalEntries[0].entries[0].senses;
-                senses.forEach(element => {
-                    //console.log(element.definitions[0]);
-                    result.push(element.definitions[0]);
-                });
-
-            });
-        });
-        this.setState((prevState)=>{
-            return {
-                definition: result
-            }
-        });
+        })
+        .catch(err => console.log('Error: ', err));
     }
 
     getRandomWord() {
