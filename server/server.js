@@ -146,6 +146,10 @@ app.get('/exists/:wordId', (req, res) => {
     });
 });
 
+app.get('http://localhost:5000/test', (req, res) => {
+    res.send("Test successful");
+});
+
 //Web resources:
 //https://www.youtube.com/watch?v=v0t42xBIYIs&t=1048s //Building react/express app - Traversy media
 //https://www.youtube.com/watch?v=v0t42xBIYIs&t=1048s //Using dotenv with NodeJS and Environment Variables - Steve Griffith
