@@ -17,6 +17,7 @@ import './HangmanApp.css';
 //gameComplete: true if the user guesed the word or ran out of tries
 //gameWon: true if the user guesed the word
 //alphabet: an array containing objects that represent the letters and images of the alphabet
+//definition: result obtained from looking up the word on Oxford Dictionary API
 
 class HangmanApp extends React.Component {
     constructor(){
@@ -31,10 +32,12 @@ class HangmanApp extends React.Component {
             round: 1,
             gameComplete: false,
             gameWon: false,
-            alphabet: startAlphabet
+            alphabet: startAlphabet,
+            definition: []
         }
         this.handleAlphabetClick = this.handleAlphabetClick.bind(this);
         this.handleReset = this.handleReset.bind(this);
+        this.handleLookup = this.handleLookup.bind(this);
     }
 
     handleAlphabetClick(letter, style) {
@@ -135,12 +138,29 @@ class HangmanApp extends React.Component {
             gameComplete: false,
             gameWon: false,
             round: prevState.round + 1,
+            definition: []
         }
         });
         //The set statement above works, but thy this doesn't work:
         // this.setState(()=>{
         //     return {alphabet: startAlphabet}
         // });
+    }
+
+    handleLookup() {
+        const url = '/exists/' + this.state.targetWord;
+        console.log('url: ', url);
+        fetch(url)
+        .then(res => res.json())
+        .then(json => {
+            //console.log(json)
+            this.setState(()=>{
+                return {
+                    definition: json
+                }
+            });
+        })
+        .catch(err => console.log('Error: ', err));
     }
 
     getRandomWord() {
@@ -252,8 +272,16 @@ class HangmanApp extends React.Component {
                     round={this.state.round}
                 />
                 {debugMode && this.state.targetWord}
+                {/* Show win or loose message */}
                 {showWinMessage && <h1 className="victory">{winMessage}</h1>}
                 {showLoseMessage && <h1 className="defeat">{loseMessage}</h1>}
+
+                {/* Look up the definition of the word */}
+                {this.state.gameComplete && <Button label="Look it up" handler={this.handleLookup}/>}
+                {this.state.gameComplete && <ul>{this.state.definition.map((def, idx)=>{
+                    return <li key={idx}>{def}</li>
+                    })}</ul>
+                }
                 <Gallows triesLeft={this.state.triesLeft} />
                 <WordSpace 
                     letterArray={this.state.targetWordArray}
